@@ -21,16 +21,24 @@ syn match sshOption "no-pty"
 syn match sshOption "no-user-rc"
 syn match sshOption "no-X11-forwarding"
 
-" Key type
-syn match sshKeyType "ssh-rsa"
-syn match sshKeyType "ssh-dss"
+" SSH1
+"
+syn match sshSSH1Bits     "\(^\|[ 	]\)[0-9]*" nextgroup=sshSSH1Exponent
+syn match sshSSH1Exponent "[ 	][0-9]*" contained nextgroup=sshSSH1Modulus
+syn match sshSSH1Modulus  "[ 	][0-9]*" contained nextgroup=sshSSH1Comment
+syn match sshSSH1Comment  "[ 	].*" contained
+
+" SSH2 key type
+syn match sshSSH2KeyType "ssh-rsa"
+syn match sshSSH2KeyType "ssh-dss"
  
 " Strings
 syn region sshString start=/"/ skip=/\\"/ end=/"/ oneline
  
 " Comments
 syn match sshComment /^#.*/
-syn match sshComment /=[ 	].*$/ms=s+1
+
+syn match sshSSH2Comment /=[ 	].*$/ms=s+1
 
 if version >= 508
 	command -nargs=+ HiLink hi link <args>
@@ -38,10 +46,15 @@ else
 	command -nargs=+ HiLink hi def link <args>
 endif
  
+HiLink sshSSH1Bits     Type
+HiLink sshSSH1Exponent Special
+HiLink sshSSH1Comment  Comment
+
+HiLink sshSSH2KeyType Type
+HiLink sshSSH2Comment Comment
+
 HiLink sshOption  Keyword
-HiLink sshKeyType Type
 HiLink sshString  String
-HiLink sshComment Comment
  
 delcommand HiLink
  
