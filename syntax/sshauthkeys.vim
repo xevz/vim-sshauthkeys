@@ -4,10 +4,6 @@ elseif exists("b:current_syntax")
 	finish
 endif
  
-if !exists("main_syntax")
-	let main_syntax = "sshauthkeys"
-endif
- 
 " Options
 syn keyword sshOption command
 syn keyword sshOption environment
@@ -60,7 +56,3 @@ delcommand HiLink
  
 let b:current_syntax = "sshauthkeys"
  
-if main_syntax == "sshauthkeys"
-	unlet main_syntax
-endif
-
