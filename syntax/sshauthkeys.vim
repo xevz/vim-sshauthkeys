@@ -19,10 +19,10 @@ syn match sshOption "no-X11-forwarding"
 
 " SSH1
 "
-syn match sshSSH1Bits     "\(^\|[ 	]\)[0-9]*" nextgroup=sshSSH1Exponent
-syn match sshSSH1Exponent "[ 	][0-9]*" contained nextgroup=sshSSH1Modulus
-syn match sshSSH1Modulus  "[ 	][0-9]*" contained nextgroup=sshSSH1Comment
-syn match sshSSH1Comment  "[ 	].*" contained
+syn match sshSSH1Bits     "\(^\| \)\d*" nextgroup=sshSSH1Exponent
+syn match sshSSH1Exponent " \d*" contained nextgroup=sshSSH1Modulus
+syn match sshSSH1Modulus  " \d*" contained nextgroup=sshSSH1Comment
+syn match sshSSH1Comment  " .*" contained
 
 " SSH2 key type
 syn match sshSSH2KeyType "ssh-rsa"
@@ -34,7 +34,7 @@ syn region sshString start=/"/ skip=/\\"/ end=/"/ oneline
 " Comments
 syn match sshComment /^#.*/
 
-syn match sshSSH2Comment /=[ 	].*$/ms=s+1
+syn match sshSSH2Comment /= .*$/ms=s+1
 
 if version >= 508
 	command -nargs=+ HiLink hi link <args>
