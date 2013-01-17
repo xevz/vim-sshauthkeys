@@ -49,6 +49,8 @@ HiLink sshSSH1Comment  Comment
 HiLink sshSSH2KeyType Type
 HiLink sshSSH2Comment Comment
 
+HiLink sshComment Comment
+
 HiLink sshOption  Keyword
 HiLink sshString  String
  

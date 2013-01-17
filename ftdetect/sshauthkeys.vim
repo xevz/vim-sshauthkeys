@@ -1,1 +1,2 @@
-au BufRead,BufNewFile authorized_keys set ft=sshauthkeys
+au BufRead,BufNewFile authorized_keys
+                       \ setlocal filetype=sshauthkeys commentstring=#%s
